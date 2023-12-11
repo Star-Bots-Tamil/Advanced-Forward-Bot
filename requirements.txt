@@ -3,3 +3,4 @@ pymongo==3.12.1
 python-telegram-bot==20.7
 psutil
 dnspython
+pymongo
