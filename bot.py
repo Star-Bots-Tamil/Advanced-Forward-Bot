@@ -8,6 +8,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, filters, Conve
 from pymongo import MongoClient
 from config import BOT_TOKEN, MONGODB_URI, API_ID, API_HASH
 
+Filters = filters.Filters
+
 # Initialize logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -281,8 +283,8 @@ def add_button(update: Update, context: CallbackContext):
 filter_settings_conversation = ConversationHandler(
     entry_points=[CommandHandler('filters', filters)],
     states={
-        STATE_ONE: [MessageHandler(filters.TEXT & ~filters.COMMAND, next)],
-        STATE_TWO: [MessageHandler(filters.TEXT & ~filters.COMMAND, add_button)],
+        STATE_ONE: [MessageHandler(Filters.text & ~Filters.command, next)],
+        STATE_TWO: [MessageHandler(Filters.text & ~Filters.command, add_button)],
     },
     fallbacks=[],
 )
